@@ -3,4 +3,7 @@ python-dotenv
 gunicorn
 numpy
 wtforms
-tensorflow
+tensorflow.keras
+tensorflow.expand_dims
+tensorflow.squeeze
+tensorflow.random
