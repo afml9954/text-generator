@@ -1,10 +1,10 @@
-import tensorflow as tf
+from tensorflow import keras, expand_dims, squeeze, random
 import numpy as np
 
 
 def generate_text(model, start_string, num):
     # file_dl = os.path.join('data/colombia_91.txt')
-    file_dl = tf.keras.utils.get_file('Quijote.txt',
+    file_dl = keras.utils.get_file('Quijote.txt',
                                       'https://gist.githubusercontent.com/jsdario/6d6c69398cb0c73111e49f1218960f79/raw/8d4fc4548d437e2a7203a5aeeace5477f598827d/el_quijote.txt')
 
     texto = open(file_dl, 'rb').read().decode(encoding='utf-8')
@@ -16,7 +16,7 @@ def generate_text(model, start_string, num):
     idx2char = np.array(vocab)
 
     input_eval = [char2idx[s] for s in start_string]
-    input_eval = tf.expand_dims(input_eval, 0)
+    input_eval = expand_dims(input_eval, 0)
     text_generated = []
 
     temperature = 0.5
@@ -24,10 +24,10 @@ def generate_text(model, start_string, num):
 
     for i in range(num_generate):
         predictions = model(input_eval)
-        predictions = tf.squeeze(predictions, 0)
+        predictions = squeeze(predictions, 0)
         predictions = predictions / temperature
-        predicted_id = tf.random.categorical(predictions, num_samples=1)[-1, 0].numpy()
-        input_eval = tf.expand_dims([predicted_id], 0)
+        predicted_id = random.categorical(predictions, num_samples=1)[-1, 0].numpy()
+        input_eval = expand_dims([predicted_id], 0)
         text_generated.append(idx2char[predicted_id])
 
     return start_string + ''.join(text_generated)

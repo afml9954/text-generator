@@ -3,5 +3,4 @@ python-dotenv
 gunicorn
 numpy
 wtforms
-keras
 tensorflow
