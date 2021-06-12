@@ -1,8 +1,5 @@
 import tensorflow as tf
 import numpy as np
-import os
-import time
-import sys
 
 
 def generate_text(model, start_string, num):
