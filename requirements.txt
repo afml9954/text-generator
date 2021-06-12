@@ -1,0 +1,9 @@
+flask
+python-dotenv
+gunicorn
+numpy
+nltk
+sklearn
+wtforms
+keras
+tensorflow
